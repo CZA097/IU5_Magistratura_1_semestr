@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Вычисления - Чудновский З.А. ИУ5Ц-11М</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link href="dist/bootstrap/style.css" rel="stylesheet" />
+    <link href="style.css" rel="stylesheet" />
+    <script>
+      window.jQuery ||
+        document.write('<script src="./dist/jquery.js"><\/script>');
+    </script>
+    <script src="./dist/bootstrap/script.js" defer></script>
+    <script src="./prog.js" defer></script>
+
+    <style>
+      body {
+        font-family: "Roboto", sans-serif;
+        background: linear-gradient(135deg, #a0d8ef, #007bff);
+        color: #000;
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+      nav.navbar {
+        background: linear-gradient(90deg, #48a9fe, #007bff);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+      }
+      nav .nav-link {
+        color: white !important;
+        font-weight: 600;
+        transition: color 0.3s ease, border-bottom 0.3s ease;
+      }
+      nav .nav-link:hover,
+      nav .nav-link.active {
+        color: #cce4ff !important;
+        border-bottom: 3px solid #cce4ff;
+      }
+      .container-main {
+        max-width: 1100px;
+        margin: 3rem auto 4rem;
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 16px;
+        padding: 2.5rem 2.5rem;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      }
+      h2 {
+        font-family: "Times New Roman", serif;
+        font-weight: 700;
+        font-size: 2rem;
+        margin-bottom: 2rem;
+        color: #003366;
+        text-align: center;
+        text-shadow: 1px 1px 4px rgba(255, 255, 255, 0.6);
+      }
+      .form-group label {
+        font-weight: 600;
+        margin-top: 0.4rem;
+        margin-bottom: 0.1rem;
+        color: #004d99;
+      }
+      input.form-control {
+        border-radius: 8px;
+        border: 1.5px solid #007bff;
+        margin-bottom: 0.7rem;
+        font-size: 1.07rem;
+        transition: border-color 0.3s ease;
+      }
+      input.form-control:focus {
+        border-color: #004aad;
+        box-shadow: 0 0 6px #66aaffcc;
+      }
+      .btn-primary {
+        background-color: #007bff;
+        border: none;
+        border-radius: 9px;
+        font-weight: 700;
+        padding: 0.6rem 1.4rem;
+        transition: background-color 0.3s ease;
+      }
+      .btn-primary:hover {
+        background-color: #0056b3;
+        color: #fff;
+      }
+      .table th,
+      .table td {
+        vertical-align: middle;
+      }
+      footer {
+        text-align: center;
+        color: #ddd;
+        padding: 1rem 0;
+        background: rgba(0, 123, 255, 0.25);
+        font-size: 0.9rem;
+        font-weight: 400;
+        font-family: "Roboto", sans-serif;
+        backdrop-filter: blur(12px);
+        flex-shrink: 0;
+      }
+    </style>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg">
+      <div class="container">
+        <a class="navbar-brand text-white fw-bold" href="title.html"
+          >Чудновский З.А. ИУ5Ц-11М</a
+        >
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Переключить навигацию"
+        >
+          <span class="navbar-toggler-icon" style="filter: invert(1)"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="title.html">Титульник</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="scheme.html">Схема</a>
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                aria-current="page"
+                href="calculations.html"
+                >Упрощённое вычисление</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3">
+      <form>
+        <div class="row">
+		<h1>Упрощённая модель расчета АМАСОИиУ</h1>
+          <div class="col">
+            <div class="form-group">
+              <p>Описание системы</p>
+              <label for="N">N - Количество компьютеров</label>
+              <input type="number" class="form-control" id="N" value="15" />
+              <label for="C">C - Число процессоров сервера</label>
+              <input type="number" class="form-control" id="C" value="3" />
+              <label for="m">m - Число дисков</label>
+              <input type="number" class="form-control" id="m" value="2" />
+              
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="form-group">
+              <p>Времена подготовок запросов</p>
+              <label for="T_0">T<sub>0</sub> - Среднее время обработки запроса к БД на сервере</label>
+              <input type="number" class="form-control" id="T_0" value="50" />
+              <label for="T_p">T<sub>p</sub> - Среднее время формирования запроса к серверу</label>
+              <input type="number" class="form-control" id="T_p" value="100" />
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="form-group">
+              <p>Времена обработки</p>
+              <label for="t_k">t<sub>к</sub> - Среднее значение времени передачи запроса по каналу</label>
+              <input type="number" class="form-control" id="t_k" value="3" />
+              <label for="t_pr">t<sub>пр</sub> - Среднее значение времени обработки запроса в ЦП сервера</label>
+              <input type="number" class="form-control" id="t_pr" value="20" />
+              <label for="t_d">t<sub>д</sub> - Среднее значение времени обработки запроса в диске сервера</label>
+              <input type="number" class="form-control" id="t_d" value="15" />
+            </div>
+          </div>
+
+          
+        </div>
+
+        <button type="button" class="btn btn-primary bg-secondary" id="go">
+          Расчитать
+        </button>
+      </form>
+
+      <br />
+
+      <table class="table table-borderless">
+        <thead>
+          <tr>
+            <th scope="col">Обозначение</th>
+            <th scope="col">Описание</th>
+            <th scope="col">Значение</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="col">ρ<sub>РС</sub></th>
+            <td>Загрузка рабочей станции</td>
+            <td id="pho_rs"></td>
+          </tr>
+          <tr>
+            <th scope="col">ρ<sub>польз</sub></th>
+            <td>Загрузка пользователя рабочей станции</td>
+            <td id="pho_polz"></td>
+          </tr>
+          <tr>
+            <th scope="col">l<sub>испр</sub></th>
+            <td>Среднее количество работающих PC</td>
+            <td id="N_ispr_rab_st"></td>
+          </tr>
+          <tr>
+            <th scope="col">ρ<sub>к</sub></th>
+            <td>Загрузка канала</td>
+            <td id="pho_k"></td>
+          </tr>
+          <tr>
+            <th scope="col">ρ<sub>пр</sub></th>
+            <td>Загрузка процессора</td>
+            <td id="pho_pr"></td>
+          </tr>
+          <tr>
+            <th scope="col">ρ<sub>д</sub></th>
+            <td>Загрузка дисков</td>
+            <td id="pho_d"></td>
+          </tr>
+          <tr>
+            <th scope="col">Т<sub>ц</sub></th>
+            <td>Среднее время цикла системы</td>
+            <td id="T_cycle"></td>
+          </tr>
+          <tr>
+            <th scope="col">Т<sub>реак</sub></th>
+            <td>Среднее время реакции системы</td>
+            <td id="T_reac"></td>
+          </tr>
+          <tr>
+            <th scope="col">λ<sub>ф0</sub></th>
+            <td>Начальная интенсивность фонового потока</td>
+            <td id="L_f_start"></td>
+          </tr>
+          <tr>
+            <th scope="col">λ<sub>фкон</sub></th>
+            <td>Конечная интенсивность фонового потока</td>
+            <td id="L_f_kon"></td>
+          </tr>
+          <tr>
+            <th scope="col">N<sub>итер</sub></th>
+            <td>Количество итераций</td>
+            <td id="N_iter"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <footer>
+      МГТУ им. Н. Э. Баумана · ИУ5Ц-11М · Чудновский Захар Александрович · 2025
+      г.
+    </footer>
+  </body>
+</html>

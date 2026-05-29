@@ -1,0 +1,131 @@
+# TABLES
+WDC_planetz.csv	4
+WDC_kepler.csv	6
+WDC_satellites.csv	3
+WDC_astronomical.csv	8
+WDC_game.csv	7
+WDC_appearances.csv	10
+WDC_age.csv	11
+WDC_planets.csv	5
+WDC_science.csv	2
+WDC_symbols.csv	1
+WDC_astrology.csv	9
+# COLUMN
+8.Represents	44
+9.Sign	45
+7.DivisionName	35
+11.RotationPeriod	56
+3.DiscoveredBy	12
+5.RotationPeriod	26
+8.Unicode	42
+4.Planet	15
+3.Planet	14
+7.SitGoBuy-in	34
+11.RevolutionPeriod	57
+10.RelativeMeanDistanceMercury1	54
+6.LengthOfYear	32
+9.Planetary Joy	51
+8.Name	39
+7.HighOrbitLeaderBoardPrizePool	37
+1.Glyph	3
+2.Object	4
+5.OrbitalRadius	24
+7.TotalDivisionPrizePool	38
+9.Detriment	48
+1.Unicode	2
+2.Mass	5
+5.Mass	23
+8.Symbol	41
+3.Name	8
+10.Planet	52
+3.MeanRadius	9
+5.ConfirmedMoons	27
+4.CalculatedTitiusBodeLaw	16
+4.Observed	17
+7.LowOrbitLeaderBoardPrizePool	36
+9.Domicile	47
+5.OrbitalPeriod	25
+5.Atmosphere	29
+8.IAU_Abbreviation	40
+6.OrbitalRadius	31
+5.Type	21
+4.DistanceFromMercury	19
+3.Numeral	7
+5.Name	20
+9.Fall	50
+4.PerfectOctaves	18
+3.SiderealPeriod	10
+1.Symbol	1
+5.EquatorialDiameter	22
+9.Exaltation	49
+8.UnicodeDisplay	43
+9.House	46
+10.MeanPerNASA	53
+2.Diameter	6
+6.Planet	30
+11.Planet	55
+5.Rings	28
+3.DiscoveryYear	11
+6.OrbitalVelocity	33
+3.Notes	13
+# RESULTS
+4[=1
+14[=1
+14[=4
+14[=15
+14[=20
+14[=30
+14[=35
+14[=39
+14[=52
+14[=55
+20[=1
+20[=4
+20[=15
+20[=30
+20[=35
+20[=39
+20[=52
+20[=55
+30[=1
+30[=15
+30[=52
+30[=55
+35[=1
+35[=4
+35[=15
+35[=20
+35[=30
+35[=39
+35[=52
+35[=55
+36[=37
+37[=36
+39[=1
+39[=4
+39[=15
+39[=20
+39[=30
+39[=35
+39[=52
+39[=55
+45[=1
+47[=1
+47[=48
+48[=1
+48[=47
+49[=50
+50[=49
+51[=1
+51[=47
+51[=48
+51[=49
+51[=50
+55[=1
+55[=15
+55[=30
+55[=52
+47,49[=48,50
+47,50[=48,49
+48,49[=47,50
+48,50[=47,49

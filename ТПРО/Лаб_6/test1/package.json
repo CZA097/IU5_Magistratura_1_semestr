@@ -1,0 +1,19 @@
+{
+  "name": "trpo-lab6",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "jest",
+    "test:coverage": "jest --coverage"
+  },
+  "jest": {
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "src/**/*.js",
+      "!src/**/*.test.js"
+    ],
+    "coverageReporters": ["html", "text"]
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}

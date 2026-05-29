@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="./assets/bmstu.jpg">
+
+    <title>Модель АСОИУ Очеретная</title>
+
+    <link href="dist/bootstrap/style.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+    <script>window.jQuery || document.write('<script src="./dist/jquery.js"><\/script>')</script>
+    <script src="./dist/bootstrap/script.js" defer></script>
+    <script src="./prog.js" defer></script>
+  </head>
+
+  <body>
+
+    <nav class="site-header sticky-top py-1">
+      <div class="container d-flex flex-column flex-md-row justify-content-between">
+        <div class="py-2 sign">
+          Очеретная С.В.
+        </div>
+        <a class="py-2 d-none d-md-inline-block" href="./title.html">Титульник</a>
+        <a class="py-2 d-none d-md-inline-block" href="./scheme.html">Схема</a>
+        <a class="py-2 d-none d-md-inline-block" href="./input.html">Входные параметры</a>
+        <a class="py-2 d-none d-md-inline-block" href="./output.html">Выходные параметры</a>
+        <a class="py-2 d-none d-md-inline-block active" href="./calculations.html">Вычисления</a>
+      </div>
+    </nav>
+
+    <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3">
+      <form>
+        <div class="row">
+          <div class="col">
+            <div class="form-group">
+              <p>Описание системы</p>
+              <label for="N">N</label>
+              <input type="number" class="form-control" id="N" value="10">
+              <label for="C">C</label>
+              <input type="number" class="form-control" id="C" value="3">
+              <label for="m">m</label>
+              <input type="number" class="form-control" id="m" value="2">
+              <label for="gamma">γ</label>
+              <input type="number" class="form-control" id="gamma" value="0">
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="form-group">
+              <p>Времена подготовок запросов</p>
+              <label for="T_0">T<sub>0</sub></label>
+              <input type="number" class="form-control" id="T_0" value="50">
+              <label for="T_p">T<sub>p</sub></label>
+              <input type="number" class="form-control" id="T_p" value="100">
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="form-group">
+              <p>Времена обработки</p>
+              <label for="t_k">t<sub>к</sub></label>
+              <input type="number" class="form-control" id="t_k" value="3">
+              <label for="t_pr">t<sub>пр</sub></label>
+              <input type="number" class="form-control" id="t_pr" value="20">
+              <label for="t_d">t<sub>д</sub></label>
+              <input type="number" class="form-control" id="t_d" value="15">
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="form-group">
+              <p>Точность расчетов</p>
+              <label for="delta">Δ</label>
+              <input type="number" class="form-control" id="delta" value="0.05">
+              <label for="N_zn">N<sub>зн</sub></label>
+              <input type="number" class="form-control" id="N_zn" value="3">
+            </div>
+          </div>
+        </div>
+
+        <button type="button" class="btn btn-primary bg-secondary" id="go">Расчитать</button>
+      </form>
+
+      <br/>
+
+      <table class="table table-borderless">
+        <thead>
+          <tr>
+            <th scope="col">Обозначение</th>
+            <th scope="col">Описание</th>
+            <th scope="col">Значение</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><th scope="col">ρ<sub>РС</sub></th><td>Загрузка рабочей станции</td><td id="pho_rs"></td></tr>
+          <tr><th scope="col">ρ<sub>польз</sub></th><td>Загрузка пользователя рабочей станции</td><td id="pho_polz"></td></tr>
+          <tr><th scope="col">l<sub>испр</sub></th><td>Среднее количество работающих PC</td><td id="N_ispr_rab_st"></td></tr>
+          <tr><th scope="col">ρ<sub>к</sub></th><td>Загрузка канала</td><td id="pho_k"></td></tr>
+          <tr><th scope="col">ρ<sub>пр</sub></th><td>Загрузка процессора</td><td id="pho_pr"></td></tr>
+          <tr><th scope="col">ρ<sub>д</sub></th><td>Загрузка дисков</td><td id="pho_d"></td></tr>
+          <tr><th scope="col">Т<sub>ц</sub></th><td>Среднее время цикла системы</td><td id="T_cycle"></td></tr>
+          <tr><th scope="col">Т<sub>реак</sub></th><td>Среднее время реакции системы</td><td id="T_reac"></td></tr>
+          <tr><th scope="col">λ<sub>ф0</sub></th><td>Начальная интенсивность фонового потока</td><td id="L_f_start"></td></tr>
+          <tr><th scope="col">λ<sub>фкон</sub></th><td>Конечная интенсивность фонового потока</td><td id="L_f_kon"></td></tr>
+          <tr><th scope="col">N<sub>итер</sub></th><td>Количество итераций</td><td id="N_iter"></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <footer class="container py-5">
+      <div class="row">
+        <div class="col-12 col-md">
+          <h5>ИУ5-15М Очеретная Светлана</h5>
+          <small class="d-block mb-3 text-muted">&copy; 2023</small>
+        </div>
+        <div class="col-6 col-md">
+        </div>
+        <div class="col-6 col-md">
+        </div>
+        <div class="col-6 col-md">
+        <div class="col-6 col-md">
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

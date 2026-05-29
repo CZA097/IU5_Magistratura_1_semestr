@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Схема - Чудновский З.А. ИУ5Ц-11М</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link href="dist/bootstrap/style.css" rel="stylesheet" />
+    <link href="style.css" rel="stylesheet" />
+    <style>
+      body {
+        font-family: "Roboto", sans-serif;
+        background: linear-gradient(135deg, #a0d8ef, #007bff);
+        color: #fff;
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      nav.navbar {
+        background: linear-gradient(90deg, #48a9fe, #007bff);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+      }
+
+      nav .nav-link {
+        color: white !important;
+        font-weight: 600;
+        transition: color 0.3s ease, border-bottom 0.3s ease;
+      }
+
+      nav .nav-link:hover,
+      nav .nav-link.active {
+        color: #cce4ff !important;
+        border-bottom: 3px solid #cce4ff;
+      }
+
+      .container-main {
+        max-width: 900px;
+        margin: 3rem auto 4rem;
+        background: rgba(255 255 255 / 0.15);
+        border-radius: 15px;
+        padding: 2rem 2.5rem;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(8px);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      h2 {
+        font-family: "Times New Roman", serif;
+        font-weight: 700;
+        font-size: 2rem;
+        margin-bottom: 1.8rem;
+        color: #003366;
+        text-align: center;
+        text-shadow: 1px 1px 4px rgba(255, 255, 255, 0.6);
+      }
+
+      img.scheme-image {
+        max-width: 100%;
+        height: auto;
+        border-radius: 12px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+      }
+
+      footer {
+        text-align: center;
+        color: #ddd;
+        padding: 1rem 0;
+        background: rgba(0, 123, 255, 0.25);
+        font-size: 0.9rem;
+        font-weight: 400;
+        font-family: "Roboto", sans-serif;
+        backdrop-filter: blur(12px);
+        flex-shrink: 0;
+      }
+    </style>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg">
+      <div class="container">
+        <a class="navbar-brand text-white fw-bold" href="title.html"
+          >Чудновский З.А. ИУ5Ц-11М</a
+        >
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Переключить навигацию"
+        >
+          <span class="navbar-toggler-icon" style="filter: invert(1)"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="title.html">Титульник</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="scheme.html"
+                >Схема</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="input.html">Входные параметры</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="output.html">Выходные параметры</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="calculations.html">Вычисления</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <main class="container-main">
+      <h2>Общая схема моделируемой СОИ и условные обозначения</h2>
+      <img
+        src="scheme.png"
+        alt="Схема технологического процесса"
+        class="scheme-image"
+      />
+
+      <section
+        class="mt-4 text-dark"
+        style="
+          background: rgba(255, 255, 255, 0.85);
+          padding: 20px;
+          border-radius: 12px;
+          max-width: 900px;
+          margin: 2rem auto;
+        "
+      >
+        <h3></h3>
+
+        <p>В схеме используются следующие обозначения:</p>
+        <ul>
+          <li>
+            <strong>ОA<sub>Дi</sub></strong> - обслуживающий аппарат,
+            имитирующий дообработку на i-той рабочей станции сети запроса от
+            этой станции к серверу после обработки запроса на сервере;
+          </li>
+          <li>
+            <strong>ОA<sub>фi</sub></strong> - обслуживающий аппарат,
+            имитирующий формирование запроса от i-той рабочей станции к серверу;
+          </li>
+          <li>
+            <strong>Б<sub>к</sub></strong> - буфер, имитирующий очередь запросов
+            к каналу;
+          </li>
+          <li>
+            <strong>ОA<sub>к</sub></strong> - обслуживающий аппарат, имитирующий
+            задержку при передаче данных через канал;
+          </li>
+          <li>
+            <strong>Б<sub>п</sub></strong> - буфер, имитирующий очередь запросов
+            к процессорам;
+          </li>
+          <li>
+            <strong>ОА<sub>n</sub></strong> - обслуживающие аппараты,
+            имитирующие работу процессоров;
+          </li>
+          <li>
+            <strong>Б<sub>Дi</sub></strong> - буфер, имитирующий очередь
+            запросов к i-му диску;
+          </li>
+          <li>
+            <strong>ОA<sub>Дi</sub></strong> - обслуживающий аппарат,
+            имитирующий работу i-го диска;
+          </li>
+          <li>
+            <strong>γ</strong> - вероятность обращения запроса к ЦП после
+            обработки на диске. Обслуживание заявок во всех ОА подчиняется
+            экспоненциальному закону.
+          </li>
+        </ul>
+      </section>
+    </main>
+
+    <footer>
+      МГТУ им. Н. Э. Баумана · ИУ5Ц-11М · Чудновский Захар Александрович · 2025
+      г.
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

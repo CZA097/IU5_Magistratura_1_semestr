@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="./assets/bmstu.jpg">
+
+    <title>Модель АСОИУ Очеретная</title>
+
+    <link href="dist/bootstrap/style.css" rel="stylesheet">
+    <script src="./dist//bootstrap/script.js" defer></script>
+    <link href="style.css" rel="stylesheet">
+  </head>
+
+  <body class="bg-light">
+
+    <nav class="site-header sticky-top py-1">
+      <div class="container d-flex flex-column flex-md-row justify-content-between">
+        <div class="py-1">
+          <img src="./assets/bmstu.jpg" alt="" width="36" height="36">
+        </div>
+        <a class="py-2 d-none d-md-inline-block" href="./title.html">Титульный лист</a>
+        <a class="py-2 d-none d-md-inline-block active" href="./assignments.html">Обозначения</a>
+        <a class="py-2 d-none d-md-inline-block" href="./calculations.html">Вычисления</a>
+      </div>
+    </nav>
+
+    <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3">
+      <!-- схема -->
+      <h3>Общая схема моделируемой СОИ и условные обозначения</h3>
+      <br/>
+
+      <div class="mx-auto col-10 flex-column align-content-center justify-content-center">
+        <img src=./assets/scheme.png class="img-fluid" alt="Responsive image">
+        <p class="text-center">Рисунок 1. Общая формализованная схема СОИ.</p>
+      </div>
+      <br/>
+      <br/>
+      
+      <!-- список обозначений -->
+      <h3>В схеме используются следующие обозначения:</h3>
+      
+      <br/>
+
+      <p><strong>OA<sub>Дi</sub></strong>&nbsp;- обслуживающий аппарат, имитирующий дообработку на i-той рабочей станции сети запроса от этой станции к серверу после обработки запроса на сервере &nbsp;</p>
+      <p><strong>OA<sub>фi</sub></strong>&nbsp;- обслуживающий аппарат, имитирующий формирование запроса от i-той рабочей станции к серверу;</p>
+      <p><strong>Бк</strong> - буфер, имитирующий очередь запросов к каналу;</p>
+      <p><strong>ОА<sub>к</sub></strong> - обслуживающий аппарат, имитирующий задержку при передаче данных через канал;</p>
+      <p><strong>Бп</strong> - буфер, имитирующий очередь запросов к процессорам;</p>
+      <p><strong>ОA<sub>n</sub></strong> - обслуживающие аппараты, имитирующие работу процессоров.</p>
+      <p><strong>Б<sub>Дi</sub></strong>&nbsp;- буфер, имитирующий очередь запросов к i-му диску;</p>
+      <p><strong>ОА<sub>Дi</sub></strong>&nbsp;- обслуживающий аппарат, имитирующий работу i-го диска.</p>
+      <p><strong>γ</strong> - вероятность обращения запроса к ЦП после обработки на диске. Обслуживание заявок во всех ОА подчиняется экспоненциальному закону.</p>
+      
+      <br/>
+      <h3>Обозначения параметров аналитической модели</h3>
+      <br/>
+      
+      <!-- Табличка -->
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">№</th>
+            <th scope="col">Обозначение</th>
+            <th scope="col">Описание</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td colspan="3">
+              <div class="alert alert-primary" role="alert">
+                <h5>Входные параметры модели</h5>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">1</th>
+            <td><strong>N</strong></td>
+            <td>Число рабочих станций сети</td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td><strong>T<sub>0</sub></strong></td>
+            <td>Среднее значение времени дообработки на рабочей станции сети запроса от этой станции к базе данных на сервере</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td><strong>Т<sub>p</sub></strong></td>
+            <td>Среднее значение времени формирования запроса от рабочей станции сети к базе данных на сервере</td>
+          </tr>
+          <tr>
+            <th scope="row">4</th>
+            <td><strong>t<sub>k</sub></strong></td>
+            <td>Среднее значение времени передачи запроса по каналу</td>
+          </tr>
+          <tr>
+            <th scope="row">5</th>
+            <td><strong>C</strong></td>
+            <td>Число процессоров сервера</td>
+          </tr>
+          <tr>
+            <th scope="row">6</th>
+            <td><strong>t<sub>пр</sub></strong></td>
+            <td>Среднее значение времени обработки запроса в ЦП сервера</td>
+          </tr>
+          <tr>
+            <th scope="row">7</th>
+            <td><strong>t<sub>дi</sub></strong></td>
+            <td>Среднее значение времени обработки запроса в диске сервера</td>
+          </tr>
+          <tr>
+            <th scope="row">8</th>
+            <td><strong>m</strong></td>
+            <td>Число дисков</td>
+          </tr>
+          <tr>
+            <th scope="row">9</th>
+            <td><strong>γ</strong></td>
+            <td>Вероятность обращения запроса к ЦП после обработки на диске. Обслуживание заявок во всех ОА подчиняется экспоненциальному закону</td>
+          </tr>
+          <tr>
+            <th scope="row">10</th>
+            <td><strong>Δ</strong></td>
+            <td>Параметр регулирования точности вычисления</td>
+          </tr>
+          <tr>
+            <th scope="row">11</th>
+            <td><strong>N<sub>зн</sub></strong></td>
+            <td>Количество знаков после запятой</td>
+          </tr>
+
+          <tr>
+            <td colspan="3">
+              <div class="alert alert-primary" role="alert">
+                <h5>Выходные параметры модели</h5>
+              </div>
+            </td>
+          </tr>
+          <tr><th scope="col">1</th><td><strong>ρ<sub>РС</sub></strong></td><td>Загрузка рабочей станции</td></tr>
+          <tr><th scope="col">2</th><td><strong>ρ<sub>польз</sub></strong></td><td>Загрузка пользователя рабочей станции</td></tr>
+          <tr><th scope="col">3</th><td><strong>l<sub>испр</sub></strong></td><td>Среднее количество работающих PC</td></tr>
+          <tr><th scope="col">4</th><td><strong>ρ<sub>к</sub></strong></td><td>Загрузка канала</td></tr>
+          <tr><th scope="col">5</th><td><strong>ρ<sub>пр</sub></strong></td><td>Загрузка процессора</td></tr>
+          <tr><th scope="col">6</th><td><strong>ρ<sub>д</sub></strong></td><td>Загрузка дисков</td></tr>
+          <tr><th scope="col">7</th><td><strong>Т<sub>ц</sub></strong></td><td>Среднее время цикла системы</td></tr>
+          <tr><th scope="col">8</th><td><strong>Т<sub>реак</sub></strong></td><td>Среднее время реакции системы</td></tr>
+          <tr><th scope="col">9</th><td><strong>λ<sub>ф0</sub></strong></td><td>Начальная интенсивность фонового потока</td></tr>
+          <tr><th scope="col">10</th><td><strong>λ<sub>фкон</sub></strong></td><td>Конечная интенсивность фонового потока</td></tr>
+          <tr><th scope="col">11</th><td><strong>N<sub>итер</sub></strong></td><td>Количество итераций</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <footer class="container py-5">
+      <div class="row">
+        <div class="col-12 col-md">
+          <h5>ИУ5-15М Очеретная Светлана</h5>
+          <small class="d-block mb-3 text-muted">&copy; 2023</small>
+        </div>
+        <div class="col-6 col-md">
+        </div>
+        <div class="col-6 col-md">
+        </div>
+        <div class="col-6 col-md">
+        <div class="col-6 col-md">
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

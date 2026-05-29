@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="./assets/bmstu.jpg">
+
+    <title>Модель АСОИУ Очеретная</title>
+
+    <link href="dist/bootstrap/style.css" rel="stylesheet">
+    <script src="./dist//bootstrap/script.js" defer></script>
+    <link href="style.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <nav class="site-header sticky-top py-1">
+      <div class="container d-flex flex-column flex-md-row justify-content-between">
+        <div class="py-2 sign">
+          Очеретная С.В.
+        </div>
+        <a class="py-2 d-none d-md-inline-block" href="./title.html">Титульник</a>
+        <a class="py-2 d-none d-md-inline-block" href="./scheme.html">Схема</a>
+        <a class="py-2 d-none d-md-inline-block active" href="./input.html">Входные параметры</a>
+        <a class="py-2 d-none d-md-inline-block" href="./output.html">Выходные параметры</a>
+        <a class="py-2 d-none d-md-inline-block" href="./calculations.html">Вычисления</a>
+      </div>
+    </nav>
+
+    <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3">
+      <h3>Обозначения входных параметров аналитической модели</h3>
+      <br/>
+      
+      <!-- Табличка -->
+        <table class="table table-borderless">
+        <thead>
+          <tr>
+            <th scope="col">№</th>
+            <th scope="col">Обозначение</th>
+            <th scope="col">Описание</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td><strong>N</strong></td>
+            <td>Число рабочих станций сети</td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td><strong>T<sub>0</sub></strong></td>
+            <td>Среднее значение времени дообработки на рабочей станции сети запроса от этой станции к базе данных на сервере</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td><strong>Т<sub>p</sub></strong></td>
+            <td>Среднее значение времени формирования запроса от рабочей станции сети к базе данных на сервере</td>
+          </tr>
+          <tr>
+            <th scope="row">4</th>
+            <td><strong>t<sub>k</sub></strong></td>
+            <td>Среднее значение времени передачи запроса по каналу</td>
+          </tr>
+          <tr>
+            <th scope="row">5</th>
+            <td><strong>C</strong></td>
+            <td>Число процессоров сервера</td>
+          </tr>
+          <tr>
+            <th scope="row">6</th>
+            <td><strong>t<sub>пр</sub></strong></td>
+            <td>Среднее значение времени обработки запроса в ЦП сервера</td>
+          </tr>
+          <tr>
+            <th scope="row">7</th>
+            <td><strong>t<sub>дi</sub></strong></td>
+            <td>Среднее значение времени обработки запроса в диске сервера</td>
+          </tr>
+          <tr>
+            <th scope="row">8</th>
+            <td><strong>m</strong></td>
+            <td>Число дисков</td>
+          </tr>
+          <tr>
+            <th scope="row">9</th>
+            <td><strong>γ</strong></td>
+            <td>Вероятность обращения запроса к ЦП после обработки на диске. Обслуживание заявок во всех ОА подчиняется экспоненциальному закону</td>
+          </tr>
+          <tr>
+            <th scope="row">10</th>
+            <td><strong>Δ</strong></td>
+            <td>Параметр регулирования точности вычисления</td>
+          </tr>
+          <tr>
+            <th scope="row">11</th>
+            <td><strong>N<sub>зн</sub></strong></td>
+            <td>Количество знаков после запятой</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>

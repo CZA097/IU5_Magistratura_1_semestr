@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Курсовая — расчёт + графики и таблица</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+      body {
+        background: #f0f6fc;
+        font-family: "Segoe UI", Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        margin: 40px 0;
+        gap: 40px;
+      }
+      .form-block {
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 20px #dbeafe80;
+        padding: 35px 40px;
+        min-width: 470px;
+      }
+      .form-block h1 {
+        font-size: 2em;
+        text-align: center;
+        color: #1761a0;
+        font-weight: 700;
+        margin-bottom: 22px;
+      }
+      .inputs {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px 28px;
+        margin-bottom: 24px;
+      }
+      .input-group {
+        display: flex;
+        flex-direction: column;
+        gap: 7px;
+      }
+      label {
+        font-size: 14px;
+        font-weight: 600;
+        color: #0c2236;
+      }
+      input[type="number"] {
+        font-size: 15px;
+        padding: 7px 10px;
+        border-radius: 6px;
+        border: 1.5px solid #d0d1d2;
+        transition: border 0.2s;
+      }
+      input[type="number"]:focus {
+        border-color: #2d76c7;
+        outline: none;
+      }
+      #calculateBtn {
+        display: block;
+        width: 200px;
+        margin: 22px auto 0 auto;
+        background: #1390e2;
+        color: white;
+        font-weight: 700;
+        font-size: 17px;
+        border: none;
+        border-radius: 7px;
+        padding: 12px 0;
+        cursor: pointer;
+        box-shadow: 0 2px 10px #e5effc;
+        transition: background 0.3s;
+      }
+      #calculateBtn:hover {
+        background: #0866bc;
+      }
+      .charts-column {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        min-width: 620px;
+      }
+      .chart-card {
+        background: #f8fbff;
+        border-radius: 13px;
+        padding: 18px 22px 10px 22px;
+        box-shadow: 0 2px 8px #cbdcf740;
+        border: 1.5px solid #e3eefa;
+        margin-bottom: 0px;
+      }
+      .chart-card h2 {
+        text-align: center;
+        color: #214e80;
+        font-size: 18px;
+        margin: 0 0 5px 0;
+      }
+      canvas {
+        display: block;
+        margin: 0 auto;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 0.5px 4px #eaeaf680;
+      }
+      .table-card {
+        background: #eaf4fc;
+        border-radius: 10px;
+        padding: 20px 18px;
+        margin: 24px 0 0 0;
+        max-width: 650px;
+        box-shadow: 0 2px 8px #cbdcf740;
+        border: 1.5px solid #e3eefa;
+      }
+      .calc-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 14.5px;
+        margin: 0;
+      }
+      .calc-table thead {
+        background: #cef;
+        font-weight: 700;
+      }
+      .calc-table th,
+      .calc-table td {
+        border: 1px solid #b7d2e3;
+        padding: 7px 9px;
+        text-align: right;
+      }
+      .calc-table th:first-child,
+      .calc-table td:first-child {
+        text-align: left;
+      }
+      .calc-table td:nth-child(2) {
+        text-align: left;
+        max-width: 210px;
+        white-space: normal;
+      }
+      .calc-table tr {
+        background: #def4fb;
+      }
+      .calc-table tr:nth-child(even) {
+        background: #f4fbff;
+      }
+      .main-btn,
+      #calculateBtn {
+        display: block;
+        width: 200px;
+        margin: 18px auto 0 auto;
+        background: #1390e2;
+        color: white;
+        font-weight: 700;
+        font-size: 17px;
+        border: none;
+        border-radius: 7px;
+        padding: 12px 0;
+        cursor: pointer;
+        box-shadow: 0 2px 10px #e5effc;
+        transition: background 0.3s;
+        text-align: center;
+      }
+      .main-btn:hover,
+      #calculateBtn:hover {
+        background: #0866bc;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="form-block">
+        <h1>Курсовая работа<br />Чудновский З.А. ИУ5Ц-11М</h1>
+        <button id="showTitleBtn" class="main-btn">Показать титульник</button>
+        <div
+          id="modal"
+          style="
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+            z-index: 1500;
+          "
+        >
+          <div
+            style="
+              background: #fff;
+              padding: 12px 18px 22px 18px;
+              border-radius: 16px;
+              box-shadow: 0 2px 24px #0008;
+              max-width: 98vw;
+              max-height: 95vh;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+            "
+          >
+            <img
+              id="titleImage"
+              src="Титульник.png"
+              alt="Титульник"
+              style="
+                width: auto;
+                height: auto;
+                max-width: 98vw;
+                max-height: 78vh;
+                display: block;
+                border-radius: 12px;
+                box-shadow: 0 4px 16px #2223;
+                margin-bottom: 14px;
+              "
+            />
+            <button
+              onclick="closeModal()"
+              class="main-btn"
+              style="width: 170px"
+            >
+              Закрыть
+            </button>
+          </div>
+        </div>
+
+        <div class="inputs">
+          <div class="input-group">
+            <label>tno - среднее время наработки на отказ (часы)</label>
+            <input type="number" id="Tno" value="800" min="1" />
+          </div>
+          <div class="input-group">
+            <label>to - среднее время ремонта (часы)</label>
+            <input type="number" id="To" value="10" min="1" />
+          </div>
+          <div class="input-group">
+            <label>N - количество компьютеров</label>
+            <input type="number" id="N" value="15" min="1" />
+          </div>
+          <div class="input-group">
+            <label>C1 - кол-во ремонтников (вариант 1)</label>
+            <input type="number" id="C1" value="1" min="1" />
+          </div>
+          <div class="input-group">
+            <label>C2 - кол-во ремонтников (вариант 2)</label>
+            <input type="number" id="C2" value="2" min="1" />
+          </div>
+          <div class="input-group">
+            <label>C3 - кол-во ремонтников (вариант 3)</label>
+            <input type="number" id="C3" value="3" min="1" />
+          </div>
+          <div class="input-group">
+            <label>Sc - зарплата специалиста, руб/час</label>
+            <input type="number" id="S1" value="500" min="0" />
+          </div>
+          <div class="input-group">
+            <label>S - потери за неисправный компьютер, руб/час</label>
+            <input type="number" id="S" value="1500" min="0" />
+          </div>
+          <div class="input-group">
+            <label>Точность (знаков после запятой)</label>
+            <input type="number" id="Acc" value="3" min="0" max="10" />
+          </div>
+        </div>
+        <button id="calculateBtn">Рассчитать</button>
+        <div class="table-card">
+          <table class="calc-table">
+            <thead>
+              <tr>
+                <th>Параметры</th>
+                <th>Описание</th>
+                <th>Вар1</th>
+                <th>Вар2</th>
+                <th>Вар3</th>
+              </tr>
+            </thead>
+            <tbody id="tableBody"></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="charts-column">
+        <div class="chart-card">
+          <h2>График затрат Y (руб/час)</h2>
+          <canvas id="chartY" width="600" height="230"></canvas>
+        </div>
+        <div class="chart-card">
+          <h2>График количества неисправных компьютеров L</h2>
+          <canvas id="chartL" width="600" height="230"></canvas>
+        </div>
+        <div class="chart-card">
+          <h2>График среднего времени починки Tp (часы)</h2>
+          <canvas id="chartTp" width="600" height="230"></canvas>
+        </div>
+      </div>
+    </div>
+    <script>
+      document.getElementById("showTitleBtn").onclick = function () {
+        document.getElementById("modal").style.display = "flex";
+      };
+      function closeModal() {
+        document.getElementById("modal").style.display = "none";
+      }
+
+      // Расчетные функции как и раньше
+      function factorial(N) {
+        if (N < 2) return 1;
+        let result = 1;
+        for (let i = 1; i <= N; i++) result *= i;
+        return result;
+      }
+      function p0(N, psi, C) {
+        let pk = new Array(N + 1).fill(0),
+          sumPk = 0;
+        for (let k = 0; k <= C; k++) {
+          pk[k] =
+            (factorial(N) * Math.pow(psi, k)) /
+            (factorial(k) * factorial(N - k));
+          sumPk += pk[k];
+        }
+        for (let k = C + 1; k <= N; k++) {
+          pk[k] =
+            (factorial(N) * Math.pow(psi, k)) /
+            (Math.pow(C, k - C) * factorial(C) * factorial(N - k));
+          sumPk += pk[k];
+        }
+        for (let k = 0; k <= N; k++) pk[k] /= sumPk;
+        return pk;
+      }
+      function q(pk, C, N) {
+        let qVal = 0;
+        for (let k = C + 1; k <= N; k++) qVal += (k - C) * pk[k];
+        return qVal;
+      }
+      function l(pk, N) {
+        let lVal = 0;
+        for (let k = 1; k <= N; k++) lVal += k * pk[k];
+        return lVal;
+      }
+      function u(lVal, qVal) {
+        return lVal - qVal;
+      }
+      function rho0(uVal, C) {
+        return uVal / C;
+      }
+      function tp(lVal, N, tno) {
+        return (lVal * tno) / (N - lVal);
+      }
+      function w(tpVal, to) {
+        return tpVal - to;
+      }
+      function tc(tpVal, tno) {
+        return tpVal + tno;
+      }
+      function rhoe(tcVal, tno) {
+        return tno / tcVal;
+      }
+      function n_(N, L) {
+        return N - L;
+      }
+      function rhoe2rho0(rhoe, rho0) {
+        return rhoe / rho0;
+      }
+      function y(L, Sc, S, C) {
+        return C * Sc + L * S;
+      }
+
+      const perems = [
+        { param: "C", desc: "количество ремонтников" },
+        { param: "p₀", desc: "вероятность того, что все компьютеры работают" },
+        { param: "Q", desc: "среднее количество компьютеров, в очереди" },
+        { param: "L", desc: "среднее количество неисправных компьютеров" },
+        { param: "U", desc: "среднее количество ремонтирующихся компьютеров" },
+        { param: "ρ₀", desc: "коэффициент загрузки специалиста" },
+        { param: "n", desc: "среднее количество исправных компьютеров" },
+        { param: "ρₑ", desc: "коэффициент загрузки компьютера" },
+        { param: "W", desc: "время в очереди на ремонт" },
+        { param: "Tp", desc: "среднее время починки" },
+        { param: "Tc", desc: "среднее время цикла" },
+        { param: "ρₑ/ρ₀", desc: "режим работы службы ремонта" },
+        { param: "Y", desc: "Убытки организации" },
+      ];
+      let chartY, chartL, chartTp;
+
+      function createOrUpdateChart(ctx, labels, data, label, borderColor) {
+        if (!ctx.chart) {
+          ctx.chart = new Chart(ctx, {
+            type: "line",
+            data: {
+              labels: labels,
+              datasets: [
+                {
+                  label: label,
+                  data: data,
+                  fill: false,
+                  borderColor: borderColor,
+                  backgroundColor: borderColor,
+                  tension: 0.25,
+                  pointRadius: 7,
+                  pointHoverRadius: 10,
+                  borderWidth: 4,
+                },
+              ],
+            },
+            options: {
+              responsive: false,
+              plugins: {
+                legend: { display: true, position: "top" },
+                tooltip: { enabled: true },
+              },
+              scales: {
+                x: {
+                  title: {
+                    display: true,
+                    text: "Кол-во ремонтников, человек",
+                    font: { size: 15 },
+                  },
+                  grid: { color: "#dde6eb" },
+                  ticks: { color: "#2c3e50", font: { size: 14 } },
+                },
+                y: {
+                  beginAtZero: false,
+                  title: { display: true, text: label, font: { size: 15 } },
+                  grid: { color: "#dde6eb" },
+                  ticks: { color: "#34495e", font: { size: 14 } },
+                },
+              },
+            },
+          });
+        } else {
+          ctx.chart.data.labels = labels;
+          ctx.chart.data.datasets[0].data = data;
+          ctx.chart.update();
+        }
+      }
+
+      document.getElementById("calculateBtn").addEventListener("click", () => {
+        const Tno = Number(document.getElementById("Tno").value);
+        const To = Number(document.getElementById("To").value);
+        const N = Number(document.getElementById("N").value);
+        const C1 = Number(document.getElementById("C1").value);
+        const C2 = Number(document.getElementById("C2").value);
+        const C3 = Number(document.getElementById("C3").value);
+        const S1 = Number(document.getElementById("S1").value);
+        const S = Number(document.getElementById("S").value);
+        const acc = Number(document.getElementById("Acc").value);
+
+        const Cs = [C1, C2, C3];
+        const psi = To / Tno;
+
+        let tableResults = [[], [], []];
+        let Y = [],
+          L_list = [],
+          Tp_list = [];
+
+        Cs.forEach((C, i) => {
+          const pk = p0(N, psi, C);
+          const Q = q(pk, C, N);
+          const L = l(pk, N);
+          const U = u(L, Q);
+          const Rho0 = rho0(U, C);
+          const Tp = tp(L, N, Tno);
+          const W = w(Tp, To);
+          const Tc = tc(Tp, Tno);
+          const Rhoe = rhoe(Tc, Tno);
+          const n = n_(N, L);
+          const Re2R0 = rhoe2rho0(Rhoe, Rho0);
+          const Yv = y(L, S1, S, C);
+
+          function roundAcc(v) {
+            return Math.round(v * Math.pow(10, acc)) / Math.pow(10, acc);
+          }
+
+          // Порядок как в perems
+          let thisResults = [
+            C,
+            roundAcc(pk[0]),
+            roundAcc(Q),
+            roundAcc(L),
+            roundAcc(U),
+            roundAcc(Rho0),
+            roundAcc(n),
+            roundAcc(Rhoe),
+            roundAcc(W),
+            roundAcc(Tp),
+            roundAcc(Tc),
+            roundAcc(Re2R0),
+            roundAcc(Yv),
+          ];
+          tableResults[i] = thisResults;
+          Y.push(roundAcc(Yv));
+          L_list.push(roundAcc(L));
+          Tp_list.push(roundAcc(Tp));
+        });
+
+        // Таблица
+        let html = perems
+          .map(
+            (row, idx) => `
+      <tr>
+        <td>${row.param}</td>
+        <td>${row.desc}</td>
+        <td>${tableResults[0][idx]}</td>
+        <td>${tableResults[1][idx]}</td>
+        <td>${tableResults[2][idx]}</td>
+      </tr>
+    `
+          )
+          .join("");
+        document.getElementById("tableBody").innerHTML = html;
+
+        // Графики
+        createOrUpdateChart(
+          document.getElementById("chartY").getContext("2d"),
+          Cs,
+          Y,
+          "Затраты, руб/час",
+          "#E74C3C"
+        );
+        createOrUpdateChart(
+          document.getElementById("chartL").getContext("2d"),
+          Cs,
+          L_list,
+          "Число неисправных компьютеров",
+          "#3498DB"
+        );
+        createOrUpdateChart(
+          document.getElementById("chartTp").getContext("2d"),
+          Cs,
+          Tp_list,
+          "Время починки (часы)",
+          "#1ABC9C"
+        );
+      });
+
+      // Авторасчет при открытии:
+      window.onload = () => document.getElementById("calculateBtn").click();
+    </script>
+  </body>
+</html>

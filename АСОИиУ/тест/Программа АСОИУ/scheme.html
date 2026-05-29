@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="./assets/bmstu.jpg">
+
+    <title>Модель АСОИУ Очеретная</title>
+
+    <link href="dist/bootstrap/style.css" rel="stylesheet">
+    <script src="./dist//bootstrap/script.js" defer></script>
+    <link href="style.css" rel="stylesheet">
+  </head>
+
+  <body>
+    <nav class="site-header sticky-top py-1">
+      <div class="container d-flex flex-column flex-md-row justify-content-between">
+        <div class="py-2 sign">
+          Очеретная С.В.
+        </div>
+        <a class="py-2 d-none d-md-inline-block" href="./title.html">Титульник</a>
+        <a class="py-2 d-none d-md-inline-block active" href="./scheme.html">Схема</a>
+        <a class="py-2 d-none d-md-inline-block" href="./input.html">Входные параметры</a>
+        <a class="py-2 d-none d-md-inline-block" href="./output.html">Выходные параметры</a>
+        <a class="py-2 d-none d-md-inline-block" href="./calculations.html">Вычисления</a>
+      </div>
+    </nav>
+
+    <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3">
+      <!-- схема -->
+      <h3>Общая схема моделируемой СОИ и условные обозначения</h3>
+      <br/>
+
+      <div class="mx-auto d-flex col-10 flex-column align-content-center justify-content-center">
+        <img src=./assets/scheme.png class="img-fluid" alt="Responsive image">
+        <p class="text-center">Рисунок 1. Общая формализованная схема СОИ.</p>
+      </div>
+      <br/>
+      <br/>
+      
+      <!-- список обозначений -->
+      <h3>В схеме используются следующие обозначения:</h3>
+      
+      <br/>
+
+      <p><strong>OA<sub>Дi</sub></strong>&nbsp;- обслуживающий аппарат, имитирующий дообработку на i-той рабочей станции сети запроса от этой станции к серверу после обработки запроса на сервере &nbsp;</p>
+      <p><strong>OA<sub>фi</sub></strong>&nbsp;- обслуживающий аппарат, имитирующий формирование запроса от i-той рабочей станции к серверу;</p>
+      <p><strong>Бк</strong> - буфер, имитирующий очередь запросов к каналу;</p>
+      <p><strong>ОА<sub>к</sub></strong> - обслуживающий аппарат, имитирующий задержку при передаче данных через канал;</p>
+      <p><strong>Бп</strong> - буфер, имитирующий очередь запросов к процессорам;</p>
+      <p><strong>ОA<sub>n</sub></strong> - обслуживающие аппараты, имитирующие работу процессоров.</p>
+      <p><strong>Б<sub>Дi</sub></strong>&nbsp;- буфер, имитирующий очередь запросов к i-му диску;</p>
+      <p><strong>ОА<sub>Дi</sub></strong>&nbsp;- обслуживающий аппарат, имитирующий работу i-го диска.</p>
+      <p><strong>γ</strong> - вероятность обращения запроса к ЦП после обработки на диске. Обслуживание заявок во всех ОА подчиняется экспоненциальному закону.</p>
+    </div>
+  </body>
+</html>
